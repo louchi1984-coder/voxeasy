@@ -1,46 +1,54 @@
 # Vox Video Director Narrative Arc Architectures
 
-所有架构都必须先插入独立的 Shot 01 标题镜头：只显示用户确认的完整标题，`voiceover_text` 为空，`title: true`，运镜为 `push_in`。叙事与旁白从 Shot 02 开始。
+本文件只定义整条视频的叙事角色，不指定画面构图、视觉元素、视角或运镜。先按 SKILL.md 确认字幕与 Shot，再由所选画风为每个 Shot 独立设计画面。
 
-## 1. `pas` Arc (Pain - Agitate - Solve 痛点-激化-解决弧)
-- Target: 产品发布、技术突破、效率工具展示 (如 Google Antigravity)
-- Structure:
-  - Shot 01 (Title): Dedicated title-only shot, no voiceover (`title: true`, `push_in`)
-  - Shot 02 (Hook): Pain Point & Friction (`title: false`, `tracking_pan_down`)
-  - Shot 03 (Agitate): Agitating the Complexity & Waste (`title: false`, `layer_dissection`)
-  - Shot 04 (Breakthrough): Product Reveal & Paradigm Shift (`title: false`, `balance_tilt`)
-  - Shot 05 (Solve): Core Subagents / Features Workflow (`title: false`, `parallax`)
-  - Shot 06 (Outro): Final Value Proposition & Hero Lock (`title: false`, `static`)
+所有架构都以独立的 Shot 01 标题镜头开场：只显示用户确认的完整标题，`voiceover_text` 为空，`title: true`。标题镜头的画面、动作和运镜由所选风格决定。
 
-## 2. `how_it_works` Arc (机制拆解弧)
-- Target: 硬核科技科普、算法原理、武器/机械剖析
-- Structure:
-  - Shot 01 (Title): Dedicated title-only shot, no voiceover (`title: true`, `push_in`)
-  - Shot 02 (Hook): Mystery / Exterior Reveal (`title: false`, `tracking_pan_down`)
-  - Shot 03 (Anatomy): Internal Dissection & Layer Peeling (`title: false`, `layer_dissection`)
-  - Shot 04 (Asymmetry): Material & Cost / Spec Comparison (`title: false`, `balance_tilt`)
-  - Shot 05 (Workflow): Dynamic Process Linkage (`title: false`, `pan_right`)
-  - Shot 06 (Impact): Final Synthesis & Takeaway (`title: false`, `static`)
+## 1. `pas` Arc（痛点—激化—解决）
 
-## 3. `timeline` Arc (历史与地缘演进弧)
-- Target: 重大事件解说、地缘政治 (如 伊朗威胁乌克兰)、历史发展
-- Structure:
-  - Shot 01 (Title): Dedicated title-only shot, no voiceover (`title: true`, `push_in`)
-  - Shot 02 (Hook): Breaking News / Shocking Fact (`title: false`, `tracking_pan_down`)
-  - Shot 03 (Origin): Historical Origin & Supply Chain (`title: false`, `layer_dissection`)
-  - Shot 04 (Mechanism): Weaponry / Strategy Dissection (`title: false`, `balance_tilt`)
-  - Shot 05 (Asymmetry): Economic & Military Balance (`title: false`, `pan_right`)
-  - Shot 06 (Escalation): Escalation & Regional Spread (`title: false`, `parallax`)
-  - Shot 07 (Dual-Front): Geopolitical Network (`title: false`, `pull_out`)
-  - Shot 08 (Response): International Sanctions & Reaction (`title: false`, `tilt_down`)
-  - Shot 09 (Outro): Future Warning & Hero Lock (`title: false`, `static`)
+适用于产品发布、技术突破和效率工具展示。
 
-## 4. `man_in_hole` Arc (困境-突围弧)
-- Target: 商业战局、品牌翻盘、危机突围
-- Structure:
-  - Shot 01 (Title): Dedicated title-only shot, no voiceover (`title: true`, `push_in`)
-  - Shot 02 (Hook): The Crisis / Fall (`title: false`, `tracking_pan_down`)
-  - Shot 03 (The Hole): Deepening Dilemma (`title: false`, `layer_dissection`)
-  - Shot 04 (Pivot): The Pivot Decision / Discovery (`title: false`, `balance_tilt`)
-  - Shot 05 (Climb): Rapid Execution & Rebound (`title: false`, `pan_right`)
-  - Shot 06 (Outro): Triumph & Lessons (`title: false`, `static`)
+- Shot 01：标题
+- Shot 02：痛点或阻力
+- Shot 03：复杂度、损失或矛盾加深
+- Shot 04：突破点或产品揭示
+- Shot 05：核心能力与解决过程
+- Shot 06：最终价值与结论
+
+## 2. `how_it_works` Arc（机制拆解）
+
+适用于科技科普、算法原理和系统机制。
+
+- Shot 01：标题
+- Shot 02：问题或外部现象
+- Shot 03：关键组成
+- Shot 04：差异、成本或规格比较
+- Shot 05：工作流程
+- Shot 06：综合结论与影响
+
+## 3. `timeline` Arc（历史与演进）
+
+适用于重大事件、地缘政治和历史发展。
+
+- Shot 01：标题
+- Shot 02：当前钩子或关键事实
+- Shot 03：起源
+- Shot 04：机制或转折
+- Shot 05：力量与资源比较
+- Shot 06：升级或扩散
+- Shot 07：网络与多方关系
+- Shot 08：回应与后果
+- Shot 09：未来判断
+
+## 4. `man_in_hole` Arc（困境—突围）
+
+适用于商业战局、品牌翻盘和危机突围。
+
+- Shot 01：标题
+- Shot 02：危机出现
+- Shot 03：困境加深
+- Shot 04：转折决策
+- Shot 05：执行与反弹
+- Shot 06：结果与经验
+
+Shot 数量不是强制值。优先服从用户确认的字幕边界和 `4/6/8/10` 秒时长，不得为了套叙事模板拆散完整含义或增加空 Shot。
