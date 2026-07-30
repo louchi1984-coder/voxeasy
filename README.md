@@ -1,23 +1,26 @@
 # VoxEasy
 
-一句话或一篇完整文案，直接生成可用于 Google Flow 的 Vox 风格视频 Prompt。
+输入一句话、完整文案或 SRT，生成可用于 Google Flow 的 Vox 风格视频 Prompt。
 
-VoxEasy 是一个面向 AI Agent 的 Vox 剪纸拼贴视频导演 Skill。它会先整理旁白与叙事结构，再设计视觉隐喻、数据图表、纸质动画和运镜，最终输出可直接复制到视频模型的英文 Prompt 与结构化 JSON。
+VoxEasy 是一个面向 AI Agent 的 Vox 剪纸拼贴视频导演 Skill。它先按语义和完整时间轴拆分字幕 Shot，再让用户选择模型、比例和风格；画面确认后，才输出可直接复制到视频模型的英文 Prompt 与结构化 JSON。
 
 ## 核心能力
 
-- 输入一句话、一个主题或完整文案
-- 独立生成标题 Shot，标题不与正文混用
+- 输入一句话、完整文案或 SRT 字幕
+- SRT 保留开场、句间、镜头间和尾部空白时间
+- 按完整时间向上吸附为 4、6、8、10 秒素材
+- 交互模式先选择模型、画面比例和视觉风格
+- 非 SRT 模式独立生成标题 Shot；SRT 模式服从原时间轴
 - 将抽象概念映射为可见的纸质剪贴画实体
 - 主动设计大号数字、图表、箭头、时间线等 Vox 信息图元素
-- 根据旁白长度自动匹配 4、6、8、10 秒视频档位
+- 4、6、8 秒使用两段动作，10 秒最多三段，避免模型执行过载
 - 避免相邻 Shot 重复使用相同运镜
 - 输出声画对照表、Google Flow Prompt 和结构化 JSON
 - 不需要额外配置第三方视频生成 API
 
 ## 画风
 
-VoxEasy 4.2 内置五种画风选择：
+VoxEasy 4.7 内置五种画风选择：
 
 | 画风 | 说明 |
 | --- | --- |
@@ -38,16 +41,18 @@ VoxEasy 会自动提炼配色、造型、材质、光影、背景处理和禁用
 ## 工作流程
 
 ```text
-主题或完整文案
+一句话、完整文案或 SRT
       ↓
-旁白文案与独立标题确认
+字幕文案、时间轴与 Shot 确认
       ↓
-逐 Shot 视觉隐喻与画风确认
+模型、比例与风格选择
+      ↓
+逐 Shot 视觉设计确认
       ↓
 Google Flow Prompt + 结构化 JSON
 ```
 
-VoxEasy 采用两次确认机制。用户确认旁白后才进入视觉设计，确认画面后才输出最终 Prompt，避免在构图没有确认时直接生成成片指令。
+VoxEasy 在交互模式中设置三个停止节点：字幕分镜确认、生成参数选择、视觉分镜确认。任何一个节点未完成，都不会提前输出最终 Prompt。
 
 ## 安装
 
@@ -99,16 +104,18 @@ voxeasy/
 └── references/
     ├── beat-architectures.md
     ├── palettes.md
-    └── style-presets.md
+    ├── style-presets.md
+    └── vox-standard-v4.0.md
 ```
 
 - `SKILL.md`：完整工作流、确认节点、Prompt 与 JSON 输出规范
 - `beat-architectures.md`：叙事弧与 Shot 结构
 - `palettes.md`：配色方案
 - `style-presets.md`：预设与自定义画风规则
+- `vox-standard-v4.0.md`：保存的原始 VoxEasy 4.0 标准视觉规则
 
 ## 版本
 
-当前版本：VoxEasy 4.2
+当前版本：VoxEasy 4.7
 
 项目地址：<https://github.com/louchi1984-coder/voxeasy>
