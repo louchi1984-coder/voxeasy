@@ -4,13 +4,13 @@
 
 ## 目录
 
-- 共同边界
+- 共同边界与高精度 Prompt 合同
 - `american-comic` — 美漫纸质拼贴
 - `monument-pastel` — 柔和几何画风
 - `vintage-newspaper` — 复古报纸与模拟印刷
 - `custom` — 用户自定义画风
 
-## 共同边界
+## 共同边界与高精度 Prompt 合同
 
 所有扩展风格只共用以下内容：
 
@@ -25,6 +25,23 @@
 需要 `1:1` 裁切成片时，所有风格都必须把主体、人物、动作和文字放在中央方形安全区内，安全区外只能延伸该风格的非关键背景。Prompt 和生成接口仍使用实际的 `9:16` 或 `16:9`。
 
 扩展风格可以重新设计背景、构图、主体形态、辅助元素、位置关系、动作、视角和运镜。不得为了保留 4.0 外形而牺牲所选风格的视觉辨识度。
+
+### 强制完整度
+
+风格不同，Prompt 完整度相同。每个扩展风格 Prompt 必须依次写全：
+
+1. **风格、实际比例、明确时长**：前两句写 `[风格开头], [vertical 9:16 / horizontal 16:9]. [4/6/8/10]-second duration.`；时间戳不能代替时长。
+2. **全画幅视觉基底**：具体说明背景如何铺满画布、主要色块／空间／版面如何组织；不得只写一个漂浮容器或泛称背景。
+3. **1:1 实体映射**：把字幕概念变成可见的主体、道具或空间关系，写明它们分别代表什么；不得用抽象仪表盘代替内容。
+4. **精确元素说明**：写清中心主体和最多三组辅助元素的数量、形状、材质、颜色与 Hex、朝向、表情或状态。
+5. **精确空间构图**：写清上／中／下、左／中／右以及前景／中景／背景关系，说明标题与核心动作所在区域；需要裁切时写明中央安全区。
+6. **文字白名单**：逐字列出获准显示的文字，并写 `Display no text other than ...`；没有可见文字时明确写 `Display no text.`。
+7. **完整动作时间轴**：使用主文件规定的两段或三段时间戳，每段只写一次主要变化，最后说明元素如何稳定落版。
+8. **连续运镜**：明确一种贯穿全 Shot 的运镜、方向和强度；不能只写 `dynamic camera`。
+9. **风格技术锁定**：完整加入该风格的轮廓、纹理、光影、动画稳定性和媒介限制词，而非只粘贴一个风格名称。
+10. **纯净画面与输出参数**：使用风格专属结尾，再写无调试文字、无水印、无配音、无人声、静音视频与实际 `--ar`。
+
+Prompt 必须是连续自然英文，不使用“背景：”“主体：”等模板标签。完成后逐项反查以上十项，任一缺失就重写，不得交付。
 
 ---
 
@@ -63,6 +80,13 @@
 
 `classic American comic-book print art direction, bold hand-inked charcoal contours, expressive cartoon proportions, Ben-Day halftone dots, angular black hatching, screen-printed color fills, slight registration offset, rough ink texture`
 
+### 高精度 Prompt 要求
+
+- 明确选择单幅冲击、顺序分格或漫画编辑图解中的一种，并写出每个分格或主体的尺寸、位置、边框形状及层级。
+- 对背景、人物／物体和文字容器全部使用同一套美漫印刷语言；逐个说明纸层颜色、粗墨线、网点或排线，禁止只把中心主体漫画化。
+- 可见文字放入旁白框、冲击框或短标签，并使用文字白名单；没有获准文字时禁止自动生成拟声词。
+- 结尾使用：`Dynamic [confirmed camera direction] camera motion, fluid comic-panel animation with tactile paper-collage movement, bold hand-inked charcoal contours, Ben-Day halftone dots, angular black hatching, screen-printed color fills, slight registration offset, sharp paper-layer shadows, high contrast, clean illustrated details. Clean video canvas, no hex color codes, no debug text overlays, no watermarks, no voiceover, no human speech, no talking heads, silent video. --ar [actual ratio]`
+
 ---
 
 ## `monument-pastel` — 柔和几何画风
@@ -99,6 +123,13 @@
 ### 英文风格锚点
 
 `serene pastel geometric art direction, simplified geometric silhouettes, clean architectural color blocking, matte paper surfaces, precise edges, gentle directional lighting, elegant long shadows, balanced negative space, calm dreamlike atmosphere`
+
+### 高精度 Prompt 要求
+
+- 明确选用几何舞台、空间路径、平衡构图或抽象信息地图中的一种，并写清平台、拱门、柱体、主体和路径的数量、尺度、位置与空间关系。
+- 用字幕决定具体场景与实体，不强制不可能空间；对整个背景和全部元素统一写出粉彩颜色、几何轮廓、光源方向和长阴影方向。
+- 动作只使用一次平移、升降、旋转、对齐或尺度转变作为核心变化；写清最终平衡构图，不堆叠无关几何动作。
+- 结尾使用：`Dynamic [confirmed camera direction] camera motion, calm geometric spatial animation, simplified architectural silhouettes, precise edges, matte paper surfaces, gentle directional lighting, elegant long shadows, balanced negative space, stable geometry, high contrast, clean geometric details. Clean video canvas, no hex color codes, no debug text overlays, no watermarks, no voiceover, no human speech, no talking heads, silent video. --ar [actual ratio]`
 
 ---
 
@@ -137,6 +168,13 @@
 
 `vintage newspaper and analog photocopy editorial style, fibrous old newsprint, coarse black ink, visible halftone dots, uneven photocopy contrast, faded edges, subtle fold marks, imperfect ink coverage, restrained color misregistration`
 
+### 高精度 Prompt 要求
+
+- 明确选用头版冲击、档案拼贴、栏目演进或印刷机制中的一种，并写清报头、主图框、栏目、分隔线、印章和辅助碎片的数量、位置、尺寸与阅读顺序。
+- 整个画布必须成为完整编辑版面；具体说明旧新闻纸底色、油墨颜色、网点密度、折痕、套印偏移及内容图片的处理方式。
+- 只生成确认过的标题、数字、日期和短标签，明确禁止虚构正文与不可读小字。
+- 结尾使用：`Dynamic [confirmed camera direction] camera motion, analog editorial layout animation, fibrous old newsprint, coarse black ink, visible halftone dots, uneven photocopy contrast, faded edges, subtle fold marks, imperfect ink coverage, restrained color misregistration, high contrast, clean editorial hierarchy. Clean video canvas, no hex color codes, no unapproved body text, no debug text overlays, no watermarks, no voiceover, no human speech, no talking heads, silent video. --ar [actual ratio]`
+
 ---
 
 ## `custom` — 用户自定义画风
@@ -167,3 +205,9 @@
 - 在第二次确认中先展示画风档案摘要和逐 Shot 画面。
 
 不得把画风名称当成题材指令。用户提供参考作品、品牌或艺术方向时，只提取可见的配色、轮廓、材质、光影、构图和运动特征，不加入其角色、标志或现成场景。
+
+### 高精度 Prompt 要求
+
+- 根据画风档案生成明确的风格开头、全画幅基底、实体映射、精确元素、空间构图、文字白名单、时间轴、连续运镜和技术结尾，逐项满足本文件的“强制完整度”。
+- 若自定义画风属于纸质媒介，使用 `Vox style paper-cut collage art` 开头并保留纸层控制；若不是纸质媒介，依据 `surface_texture` 生成独立开头和结尾，禁止硬塞剪纸词。
+- 技术结尾必须显式复述 `shape_language`、`surface_texture`、`lighting_and_shadow`、`motion_grammar` 和 `forbidden_additions`，并追加纯净画面、静音与实际 `--ar`。
