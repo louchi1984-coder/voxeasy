@@ -1,0 +1,31 @@
+{
+  "id": "product",
+  "skill_name": "voxeasy-product",
+  "display_name": "VoxEasy Product",
+  "version": "4.13-product.1",
+  "description": "VoxEasy 产品发布与工具介绍定制版。仅在用户明确调用 $voxeasy-product 时使用，把产品文案或 SRT 转成突出痛点、机制、产品揭示和结果的 Google Flow 视频 Prompt。",
+  "short_description": "产品发布与工具介绍定制版",
+  "default_prompt": "Use $voxeasy-product to turn my product script into a problem-to-reveal Vox video and Google Flow prompts.",
+  "allow_implicit_invocation": false,
+  "positioning": "AI工具、软件产品、工作流和功能发布短视频",
+  "default_model": "Google Flow / Omni Flash",
+  "default_ratio": "9:16",
+  "default_style": "vox-standard",
+  "allowed_styles": [
+    "vox-standard",
+    "american-comic",
+    "monument-pastel"
+  ],
+  "narrative_preference": "优先 PAS；先表现具体阻力，再揭示产品和可见结果",
+  "visual_priorities": [
+    "产品主体清楚可见",
+    "问题与解决前后对比",
+    "一次有冲击力的产品揭示",
+    "功能通过动作而非抽象面板说明"
+  ],
+  "constraints": [
+    "不得虚构用户量、效率提升或产品能力",
+    "单个 Shot 不连续展示多个功能",
+    "品牌名与产品名必须逐字确认"
+  ]
+}

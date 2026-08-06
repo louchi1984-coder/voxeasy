@@ -1,0 +1,17 @@
+{
+  "recommended_threshold": 0.35,
+  "should_trigger": [
+    {"text": "用 VoxEasy 把这段 SRT 拆成 Flow 视频 Prompt", "family": "srt_to_vox_video"},
+    {"text": "把这段文案做成标准 Vox 风格的逐镜提示词", "family": "script_to_vox_video"},
+    {"text": "先帮我拆 Shot，然后用美漫风格生成 Google Flow prompt", "family": "extended_style_video"},
+    {"text": "给我一个六秒的复古报纸 Vox 视频 Prompt，先确认画面", "family": "single_shot_test"},
+    {"text": "这句话做成像素小剧场视频，9:16，Omni Flash", "family": "pixel_video"}
+  ],
+  "should_not_trigger": [
+    {"text": "只帮我校对一下这个 SRT 的错别字", "family": "subtitle_proofreading"},
+    {"text": "做一张静态 Vox 风格海报", "family": "static_poster"},
+    {"text": "修改这个 Remotion Scene 的时间轴", "family": "remotion_development"},
+    {"text": "帮我剪掉视频开头的空白", "family": "video_editing"},
+    {"text": "解释一下 Vox 的新闻叙事风格", "family": "general_explanation"}
+  ]
+}

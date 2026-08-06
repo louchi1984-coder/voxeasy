@@ -1,0 +1,34 @@
+{
+  "id": "lab",
+  "skill_name": "voxeasy-lab",
+  "display_name": "VoxEasy Lab",
+  "version": "4.13-lab.1",
+  "description": "VoxEasy 视觉实验定制版。仅在用户明确调用 $voxeasy-lab 时使用，用于测试全部预设、自定义画风和用户明确要求的逐 Shot 混合风格，不作为公开稳定版默认入口。",
+  "short_description": "全部画风与混合风格实验版",
+  "default_prompt": "Use $voxeasy-lab to test a custom or mixed visual style on confirmed video shots and Google Flow prompts.",
+  "allow_implicit_invocation": false,
+  "positioning": "新画风、混合风格和Prompt实验",
+  "default_model": "Google Flow / Omni Flash",
+  "default_ratio": "9:16",
+  "default_style": "custom",
+  "allowed_styles": [
+    "vox-standard",
+    "american-comic",
+    "monument-pastel",
+    "vintage-newspaper",
+    "pixel-theater",
+    "custom"
+  ],
+  "narrative_preference": "不固定叙事弧，先验证视觉实验目标",
+  "visual_priorities": [
+    "风格辨识度",
+    "全画幅统一画风",
+    "人物和场景可读性",
+    "记录实验变量"
+  ],
+  "constraints": [
+    "只有用户明确要求才允许逐 Shot 混合风格",
+    "每个 Shot 仍只能读取一个风格文件",
+    "实验变化不得破坏时长、文字白名单和两次确认"
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "fallback_positive_concepts": ["vox_video", "shot_planning", "flow_prompt"],
+  "positive_concepts": {
+    "vox_video": {
+      "weight": 0.4,
+      "phrases": ["voxeasy", "vox 风格", "vox 视频", "vox-style", "美漫风格", "复古报纸", "像素小剧场"]
+    },
+    "shot_planning": {
+      "weight": 0.3,
+      "phrases": ["拆 shot", "逐镜", "分镜", "srt", "字幕时间轴", "4/6/8/10"]
+    },
+    "flow_prompt": {
+      "weight": 0.3,
+      "phrases": ["google flow", "flow prompt", "视频 prompt", "视频提示词", "omni flash"]
+    }
+  },
+  "negative_concepts": {
+    "static_image": {
+      "weight": 0.55,
+      "exclusive": true,
+      "phrases": ["静态海报", "一张海报", "单张图片", "海报"]
+    },
+    "subtitle_only": {
+      "weight": 0.55,
+      "exclusive": true,
+      "phrases": ["只校对", "字幕错别字", "只改字幕"]
+    },
+    "software_development": {
+      "weight": 0.55,
+      "exclusive": true,
+      "phrases": ["remotion scene", "修改代码", "开发网页"]
+    },
+    "video_editing": {
+      "weight": 0.55,
+      "exclusive": true,
+      "phrases": ["剪掉视频", "视频剪辑", "删除片头"]
+    },
+    "explanation_only": {
+      "weight": 0.45,
+      "exclusive": true,
+      "phrases": ["解释一下", "只介绍", "什么是"]
+    }
+  }
+}

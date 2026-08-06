@@ -1,0 +1,24 @@
+interface:
+  display_name: "VoxEasy"
+  short_description: "把文案或SRT转成Vox视频分镜与Flow Prompt"
+  default_prompt: "Use $voxeasy to turn my topic, script, or SRT into confirmed Vox-style shots and Google Flow prompts."
+compatibility:
+  canonical_format: "agent-skills"
+  adapter_targets:
+    - "openai"
+    - "claude"
+    - "generic"
+  activation:
+    mode: "implicit-or-manual"
+    paths: []
+  execution:
+    context: "inline"
+    shell: "bash"
+  trust:
+    source_tier: "local"
+    remote_inline_execution: "forbid"
+    remote_metadata_policy: "allow-metadata-only"
+  degradation:
+    openai: "native-skill"
+    claude: "agent-skills-source"
+    generic: "neutral-source"
