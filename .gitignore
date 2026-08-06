@@ -1,0 +1,3 @@
+dist/
+profiles/private-*.json
+*.zip

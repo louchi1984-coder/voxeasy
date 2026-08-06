@@ -1,0 +1,7 @@
+interface:
+  display_name: "VoxEasy"
+  short_description: "把文案或SRT转成Vox视频分镜与Flow Prompt"
+  default_prompt: "Use $voxeasy to turn my topic, script, or SRT into confirmed Vox-style shots and Google Flow prompts."
+
+policy:
+  allow_implicit_invocation: true

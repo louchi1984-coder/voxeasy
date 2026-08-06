@@ -1,0 +1,30 @@
+{
+  "id": "news",
+  "skill_name": "voxeasy-news",
+  "display_name": "VoxEasy News",
+  "version": "4.13-news.1",
+  "description": "VoxEasy 新闻、历史与地缘叙事定制版。仅在用户明确调用 $voxeasy-news 时使用，将文案或 SRT 转成强调时间线、来源、地图和新闻编辑层级的 Google Flow 视频 Prompt。",
+  "short_description": "新闻历史与地缘叙事定制版",
+  "default_prompt": "Use $voxeasy-news to turn my verified news script or SRT into source-aware Vox video shots and Flow prompts.",
+  "allow_implicit_invocation": false,
+  "positioning": "新闻、历史、调查和地缘政治短视频",
+  "default_model": "Google Flow / Omni Flash",
+  "default_ratio": "9:16",
+  "default_style": "vintage-newspaper",
+  "allowed_styles": [
+    "vintage-newspaper",
+    "vox-standard"
+  ],
+  "narrative_preference": "优先 timeline；重大结论先给当前钩子，再交代起源、转折、力量对比和后果",
+  "visual_priorities": [
+    "准确日期与来源",
+    "清楚地图和时间线",
+    "头版式信息层级",
+    "克制而可读的数据标注"
+  ],
+  "constraints": [
+    "时效性事实和伤亡数据必须先检索验证",
+    "无法验证的数字不得写入旁白或画面",
+    "不得生成虚构新闻正文"
+  ]
+}

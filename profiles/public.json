@@ -1,0 +1,33 @@
+{
+  "id": "public",
+  "skill_name": "voxeasy",
+  "display_name": "VoxEasy",
+  "version": "4.13-public.1",
+  "description": "将一句话主题、完整文案或 SRT 制作为 Google Flow 可用的 VoxEasy 视频 Prompt 与 JSON。先规划字幕 Shot，再确认模型、比例、表达方式和所选风格。用于通用 Vox 风短视频，不用于静态海报、纯字幕校对、软件开发或视频剪辑。",
+  "short_description": "把文案或SRT转成Vox视频分镜与Flow Prompt",
+  "default_prompt": "Use $voxeasy to turn my topic, script, or SRT into confirmed Vox-style shots and Google Flow prompts.",
+  "allow_implicit_invocation": true,
+  "positioning": "通用、稳定、公开发布的 VoxEasy",
+  "default_model": "Google Flow / Omni Flash",
+  "default_ratio": "9:16",
+  "default_style": "vox-standard",
+  "allowed_styles": [
+    "vox-standard",
+    "american-comic",
+    "monument-pastel",
+    "vintage-newspaper",
+    "pixel-theater",
+    "custom"
+  ],
+  "narrative_preference": "根据内容选择，不固定套用模板",
+  "visual_priorities": [
+    "内容匹配的表达方式",
+    "清楚的场景锚点或隐喻映射",
+    "稳定动作",
+    "可读画面"
+  ],
+  "constraints": [
+    "同一条视频默认统一风格",
+    "只有用户明确要求才允许混合风格"
+  ]
+}

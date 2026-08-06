@@ -1,0 +1,31 @@
+{
+  "id": "data",
+  "skill_name": "voxeasy-data",
+  "display_name": "VoxEasy Data",
+  "version": "4.13-data.1",
+  "description": "VoxEasy 数据对比与信息图定制版。仅在用户明确调用 $voxeasy-data 时使用，把报告、对比文案或 SRT 转成突出数字、尺度、趋势、来源和实体比较的 Google Flow 视频 Prompt。",
+  "short_description": "数据对比与信息图视频定制版",
+  "default_prompt": "Use $voxeasy-data to turn my sourced comparison or report into readable Vox data-video shots and Flow prompts.",
+  "allow_implicit_invocation": false,
+  "positioning": "数字对比、报告摘要、商业指标与研究结论短视频",
+  "default_model": "Google Flow / Omni Flash",
+  "default_ratio": "9:16",
+  "default_style": "vox-standard",
+  "allowed_styles": [
+    "vox-standard",
+    "vintage-newspaper",
+    "monument-pastel"
+  ],
+  "narrative_preference": "优先 how_it_works 或清楚的比较结构；先定义比较口径，再呈现差异和结论",
+  "visual_priorities": [
+    "大号关键数字",
+    "统一尺度和单位",
+    "实体化比较关系",
+    "来源与年份可读"
+  ],
+  "constraints": [
+    "所有数字必须有来源或由用户提供",
+    "比较双方必须使用同一统计口径",
+    "每个 Shot 最多突出一个主结论和三组数字"
+  ]
+}

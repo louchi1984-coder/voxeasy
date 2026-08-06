@@ -1,65 +1,57 @@
 # VoxEasy
 
-输入一句话、完整文案或 SRT，生成可用于 Google Flow 的 Vox 风格视频 Prompt。
+输入一句话、完整文案或 SRT，生成可用于 Google Flow 的 Vox 风格视频分镜、Prompt 与结构化 JSON。
 
-VoxEasy 是一个面向 AI Agent 的 Vox 剪纸拼贴视频导演 Skill。它先按语义和完整时间轴拆分字幕 Shot，再让用户选择模型、比例和风格；画面确认后，才输出可直接复制到视频模型的英文 Prompt 与结构化 JSON。
+VoxEasy 4.13 先锁定字幕时间轴，再逐 Shot 选择直接呈现、故事场景或视觉隐喻，最后完成模型、比例、画面与运镜确认。标准 Vox 与每种扩展风格使用独立的构图和镜头语言。
 
-## 核心能力
+## 核心流程
 
-- 输入一句话、完整文案或 SRT 字幕
-- SRT 保留开场、句间、镜头间和尾部空白时间
-- 按完整时间向上吸附为 4、6、8、10 秒素材
-- 交互模式先选择模型、画面比例和视觉风格
-- Google Flow / Omni 只提供原生支持的 `9:16`、`16:9`
-- 方形成片使用中央 `1:1` 安全区，并在后期裁切
-- 非 SRT 模式独立生成标题 Shot；SRT 模式服从原时间轴
-- 将抽象概念映射为可见的纸质剪贴画实体
-- 主动设计大号数字、图表、箭头、时间线等 Vox 信息图元素
-- 4、6、8 秒使用两段动作，10 秒最多三段，避免模型执行过载
-- 所有扩展画风继承标准 4.0 的 Prompt 信息完整度，显式锁定时长、构图、文字、动作和运镜
-- 避免相邻 Shot 重复使用相同运镜
-- 输出声画对照表、Google Flow Prompt 和结构化 JSON
-- 不需要额外配置第三方视频生成 API
+```text
+一句话／完整文案／SRT
+      ↓
+字幕、完整时间轴、Shot与4/6/8/10秒吸附确认
+      ↓
+模型、实际比例、视觉风格选择
+      ↓
+核心信息 → 表达方式 → 场景锚点／隐喻映射 → 风格转译
+      ↓
+逐Shot画面与运镜确认
+      ↓
+Google Flow Prompt + JSON
+```
 
-## 画风
+SRT 会保留开场、字幕内部、镜头之间和已知尾部的空白。`actual_duration_seconds`记录真实连续区间，`duration_seconds`记录向上吸附后的生成档位。
 
-VoxEasy 4.9 内置五种画风选择：
+## 公开版画风
 
-| 画风 | 说明 |
+| 画风 | 设计与运镜方向 |
 | --- | --- |
-| `vox-standard` | 经典 Vox 剪纸拼贴，默认风格 |
-| `american-comic` | 美漫分格、网点、对话框、速度线与冲击框 |
-| `monument-pastel` | 柔和粉彩、纯净几何与安静长阴影 |
-| `vintage-newspaper` | 旧新闻纸、粗网点、油墨颗粒与轻微错版 |
-| `custom` | 用户用一句自然语言描述自己的画风 |
+| `vox-standard` | 原始4.0剪纸拼贴、实体表达、数据标注与Vox运镜序列 |
+| `american-comic` | 单幅冲击、顺序分格或漫画图解；推近、横移、页面拉远或特写 |
+| `monument-pastel` | 柔和几何舞台、路径与平衡构图；缓慢推拉、横移、俯视或克制绕行 |
+| `vintage-newspaper` | 头版、档案、栏目与印刷机制；版面横移、栏目移动、放大或整版拉远 |
+| `pixel-theater` | 原创像素人物与微缩舞台；稳定正面机位或居中轻推 |
+| `custom` | 根据用户描述建立独立的构图、材质、动作与镜头档案 |
 
-自定义画风示例：
+Hex 色值只作为不可见颜色控制，不得显示在画面里。4/6/8秒最多两个主要动作阶段，10秒最多三个。
 
-```text
-使用 VoxEasy，把这段文案做成低饱和蜡笔杂志风。
-```
+具体主体、过程、地图和数据优先直接呈现；具体人物、地点和事件使用故事场景；只有总结、抽象关系或缺少现实载体时才使用视觉隐喻。失败、用户纠正和每五次成功使用会进入轻量复盘，但候选规则通过备份和回归验证前不会改变 Skill。
 
-VoxEasy 会自动提炼配色、造型、材质、光影、背景处理和禁用元素，并在确认后应用到整个画面。
+## 版本体系
 
-## 工作流程
+仓库根目录是唯一公共核心。`profiles/`只定义版本差异，`scripts/build_variants.py`从同一核心生成可安装版本。
 
-```text
-一句话、完整文案或 SRT
-      ↓
-字幕文案、时间轴与 Shot 确认
-      ↓
-模型、比例与风格选择
-      ↓
-逐 Shot 视觉设计确认
-      ↓
-Google Flow Prompt + 结构化 JSON
-```
+| 版本 | 调用 | 用途 |
+| --- | --- | --- |
+| `voxeasy` | 自动或`$voxeasy` | Git公开稳定版 |
+| `voxeasy-news` | `$voxeasy-news` | 新闻、历史、调查和地缘政治 |
+| `voxeasy-product` | `$voxeasy-product` | 产品发布、AI工具和工作流介绍 |
+| `voxeasy-data` | `$voxeasy-data` | 数字对比、报告和信息图 |
+| `voxeasy-lab` | `$voxeasy-lab` | 新画风、自定义与混合风格实验 |
 
-VoxEasy 在交互模式中设置三个停止节点：字幕分镜确认、生成参数选择、视觉分镜确认。任何一个节点未完成，都不会提前输出最终 Prompt。
+只有公开版允许自动触发；定制版必须手动调用，避免多个Skill抢任务。
 
-Google Flow / Omni 不原生支持 `1:1`。用户需要方形成片时，VoxEasy 会先让用户选择 `9:16` 或 `16:9` 作为实际生成比例，再将人物、动作和文字限制在中央方形安全区，最终从中央裁切为 `1:1`。
-
-## 安装
+## 安装公开版
 
 ### Codex
 
@@ -73,54 +65,55 @@ git clone https://github.com/louchi1984-coder/voxeasy.git ~/.codex/skills/voxeas
 git clone https://github.com/louchi1984-coder/voxeasy.git ~/.gemini/config/skills/voxeasy
 ```
 
-如果目标目录已经存在，请先备份现有版本，再选择更新或替换。
+如果目标目录已存在，先备份，再选择更新或替换。
 
-## 使用
+## 构建定制版
 
-在支持 Skill 的 Agent 中直接调用：
+生成全部版本：
 
-```text
-使用 VoxEasy：
-
-标题：最简单的 Vox 风视频 Skill 来了
-画幅：9:16
-画风：标准 Vox
-
-最近，Vox 拼贴视频正在全球短视频平台爆火……
+```bash
+python3 scripts/build_variants.py --all
 ```
 
-也可以只输入一句话：
+结果位于`dist/`。安装需要的版本：
 
-```text
-使用 VoxEasy，做一条介绍 AI Agent 工作流的 9:16 视频。
+```bash
+cp -R dist/voxeasy-news ~/.codex/skills/
+cp -R dist/voxeasy-product ~/.codex/skills/
+cp -R dist/voxeasy-data ~/.codex/skills/
+cp -R dist/voxeasy-lab ~/.codex/skills/
 ```
 
-选择自定义画风：
+只构建一个版本：
 
-```text
-使用 VoxEasy，画风选择自定义：蓝白陶瓷纹样与粗糙手工纸结合。
+```bash
+python3 scripts/build_variants.py --profile profiles/news.json
 ```
+
+私人定制可新增`profiles/private-*.json`；这些文件已被Git忽略。
 
 ## 目录
 
 ```text
 voxeasy/
 ├── SKILL.md
-└── references/
-    ├── beat-architectures.md
-    ├── palettes.md
-    ├── style-presets.md
-    └── vox-standard-v4.0.md
+├── agents/
+├── references/
+│   ├── timeline-rules.md
+│   ├── expression-routing.md
+│   ├── output-contract.md
+│   ├── self-learning.md
+│   ├── variant-profile.md
+│   └── styles/
+├── scripts/
+│   ├── validate_timeline.py
+│   ├── self_learning.py
+│   └── build_variants.py
+├── profiles/
+├── evals/
+└── archive/
 ```
 
-- `SKILL.md`：完整工作流、确认节点、Prompt 与 JSON 输出规范
-- `beat-architectures.md`：叙事弧与 Shot 结构
-- `palettes.md`：配色方案
-- `style-presets.md`：预设与自定义画风规则
-- `vox-standard-v4.0.md`：保存的原始 VoxEasy 4.0 标准视觉规则
-
-## 版本
-
-当前版本：VoxEasy 4.9
+当前公开版本：`4.13-public.1`
 
 项目地址：<https://github.com/louchi1984-coder/voxeasy>
